@@ -6,6 +6,8 @@ import { getTexts } from '@/lib/constants'
 import { useLanguage } from '@/components/LanguageProvider'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import { QRCodeModal } from '@/components/QRCodeModal'
+import { ContactModal } from '@/components/ContactModal'
 
 // const currentLang = 'en'
 
@@ -17,6 +19,7 @@ export function Links() {
   const [mounted, setMounted] = useState(false)
   const [copied, setCopied] = useState(false)
   const [showQR, setShowQR] = useState(false)
+  const [showContact, setShowContact] = useState(false)
 
   // Pour éviter les problèmes d'hydratation
   useEffect(() => {
@@ -146,12 +149,6 @@ export function Links() {
     }
   }
 
-  const modalVariants = {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 25 } },
-    exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } }
-  }
-
   // Ne rendre le contenu que côté client pour éviter les problèmes d'hydratation
   if (!mounted) return null;
 
@@ -276,7 +273,7 @@ export function Links() {
           ))}
         </motion.div>
         
-        {/* Share and QR Buttons */}
+        {/* Action Buttons */}
         <motion.div
           className="mt-8 flex justify-center gap-3 flex-wrap"
           initial={{ opacity: 0, y: 10 }}
@@ -345,124 +342,39 @@ export function Links() {
             </svg>
             QR Code
           </button>
+          
+          {/* Contact Button */}
+          <button 
+            onClick={() => setShowContact(true)}
+            className="group py-2 px-4 bg-slate-800/60 hover:bg-slate-800/90 text-slate-300 text-sm rounded-full flex items-center gap-2 transition-colors duration-300 border border-slate-700/50 hover:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-blue-400 transition-colors duration-300">
+              <path d="M16 2H8C4 2 2 4 2 8v13c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2h12v2c0 .55.45 1 1 1h1c.55 0 1-.45 1-1V8c0-4-2-6-6-6Z"></path>
+              <path d="M15.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+              <path d="M8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+              <path d="M12 14c-2.33 0-4.29.46-5.97 1.33A2 2 0 0 0 5 17.22V18h14v-.78a2 2 0 0 0-1.03-1.89C16.29 14.46 14.33 14 12 14Z"></path>
+            </svg>
+            Contact
+          </button>
         </motion.div>
       </div>
 
       {/* QR Code Modal */}
-      <AnimatePresence>
-        {showQR && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowQR(false)}
-          >
-            <motion.div 
-              className="relative bg-gradient-to-b from-slate-900 to-slate-950 rounded-2xl overflow-hidden shadow-xl max-w-sm w-full"
-              variants={modalVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
-            >
-              {/* Decorative background elements - similar to main page */}
-              <div className="absolute top-0 left-0 right-0 h-40 overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-conic from-cyan-500/20 via-transparent to-transparent opacity-70"></div>
-                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-conic from-transparent via-transparent to-purple-500/20 opacity-70"></div>
-              </div>
-              
-              <div className="pt-8 px-6 pb-6 relative z-10">
-                {/* Mini Profile Section */}
-                <div className="flex items-center mb-5">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-cyan-400/30 shadow-lg shadow-cyan-400/10 mr-4">
-                    <Image 
-                      src="/images/profile-picture.jpeg" 
-                      alt="Mathys Cogné Foucault"
-                      fill
-                      sizes="3.5rem"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-slate-200">Mathys Cogné Foucault</h3>
-                    <div className="flex items-center gap-1.5">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                      <p className="text-slate-400 text-xs">Web3 Developer | 42Blockchain</p>
-                    </div>
-                  </div>
-                  
-                  {/* Close Button - Absolute positioned */}
-                  <button 
-                    onClick={() => setShowQR(false)}
-                    className="absolute top-3 right-3 text-slate-400 hover:text-slate-200 bg-slate-800/80 rounded-full p-1.5"
-                    aria-label="Close"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                </div>
-                
-                {/* Message */}
-                <div className="text-center mb-5">
-                  <h4 className="text-base text-slate-300 font-medium mb-1">Scan to connect with me</h4>
-                  <p className="text-xs text-slate-400 mb-4">Find all my professional links in one place</p>
-                </div>
-                
-                {/* QR Code Section */}
-                <div className="bg-slate-900/40 p-3.5 rounded-lg mb-5 relative">
-                  {/* Corners for decoration */}
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-purple-500 -translate-x-1 -translate-y-1 rounded-tl"></div>
-                  <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-purple-500 translate-x-1 -translate-y-1 rounded-tr"></div>
-                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-purple-500 -translate-x-1 translate-y-1 rounded-bl"></div>
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-purple-500 translate-x-1 translate-y-1 rounded-br"></div>
-                  
-                  <img 
-                    src={qrCodeUrl} 
-                    alt="QR Code to Mathys's links" 
-                    width={200} 
-                    height={200} 
-                    className="mx-auto"
-                  />
-                </div>
-                
-                {/* Mini Preview Links */}
-                <div className="space-y-2 mb-4">
-                  {texts.items.slice(0, 2).map((link, index) => (
-                    <div 
-                      key={index}
-                      className="flex items-center gap-2 p-2 rounded-lg border border-slate-800/60 bg-slate-900/40"
-                    >
-                      <div 
-                        className="flex items-center justify-center w-8 h-8 rounded-full shrink-0"
-                        style={{ 
-                          backgroundColor: `${link.color}22`,
-                          color: link.color
-                        }}
-                      >
-                        {getIcon(link.icon)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm text-slate-300 truncate">{link.title}</h3>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex items-center justify-center py-1">
-                    <span className="text-slate-500 text-xs">+{texts.items.length - 2} more links</span>
-                  </div>
-                </div>
-                
-                {/* Small Print */}
-                <div className="text-center text-slate-500 text-xs">
-                  <p>© 2025 Mathys Cogné Foucault</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <QRCodeModal 
+        isOpen={showQR} 
+        onClose={() => setShowQR(false)} 
+        qrCodeUrl={qrCodeUrl} 
+        texts={texts}
+      />
+      
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={showContact} 
+        onClose={() => setShowContact(false)} 
+        copyToClipboard={copyToClipboard}
+        copied={copied}
+        setCopied={setCopied}
+      />
     </section>
   )
 } 
