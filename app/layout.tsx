@@ -9,11 +9,11 @@ import { LanguageProvider } from '@/components/LanguageProvider'
 export const metadata: Metadata = {
   metadataBase: new URL('https://mathys-cognefoucault.fr'),
   title: {
-    default: "Mathys Cogne Foucault - Link",
-    template: `%s | Mathys Cogne Foucault`,
+    default: "Linktree Mathys Cogne Foucault",
+    template: `Linktree of Mathys Cogne Foucault`,
   },
-  description: "My Linktree for my social networks",
-  keywords: "",
+  description: "Linktree of Mathys Cogne Foucault, discover my projects and my social networks",
+  keywords: "Mathys Cogne Foucault, Linktree, projects, social networks, 42Blockchain, 42Paris",
   robots: {
     index: true,
     follow: true,

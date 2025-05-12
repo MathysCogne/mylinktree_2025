@@ -178,7 +178,7 @@ export function Links() {
           </h1>
           <div className="flex items-center gap-1.5 mt-1">
             <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <p className="text-slate-400 text-sm sm:text-base">Web3 Developer | 42Blockchain Member</p>
+            <p className="text-slate-400 text-sm sm:text-base">Founder KoVault | 42Blockchain | 42 Paris</p>
           </div>
         </motion.div>
         

@@ -309,6 +309,13 @@ export const texts = {
     subtitle: "Let's connect",
     items: [
       {
+        title: "KoVault",
+        description: "My Web3 startup - Multi-sig reimagined",
+        url: "https://kovault.xyz/",
+        icon: "globe",
+        color: "#6366F1"
+      },
+      {
         title: "LinkedIn",
         description: "My professional profile",
         url: "https://www.linkedin.com/in/mathys-cogne-foucault/",
@@ -616,8 +623,15 @@ export const texts = {
       subtitle: "Let's connect",
       items: [
         {
+          title: "KoVault",
+          description: "Ma startup Web3 - Multi-sig repensé pour les vraies équipes",
+          url: "https://kovault.xyz/",
+          icon: "globe",
+          color: "#6366F1"
+        },
+        {
           title: "LinkedIn",
-          description: "My professional profile",
+          description: "Mon profil professionnel",
           url: "https://www.linkedin.com/in/mathys-cogne-foucault/",
           icon: "linkedin",
           color: "#0077B5"
