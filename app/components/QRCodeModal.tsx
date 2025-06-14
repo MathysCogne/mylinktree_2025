@@ -47,7 +47,7 @@ export function QRCodeModal({ isOpen, onClose, qrCodeUrl, texts }: QRCodeModalPr
               <div className="flex items-center mb-5">
                 <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-cyan-400/30 shadow-lg shadow-cyan-400/10 mr-4">
                   <Image 
-                    src="/images/profile-picture.jpeg" 
+                    src="/images/profile-picture.jpg" 
                     alt="Mathys Cogné Foucault"
                     fill
                     sizes="3.5rem"

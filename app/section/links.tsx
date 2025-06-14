@@ -165,7 +165,7 @@ export function Links() {
         >
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-4 rounded-full overflow-hidden border-4 border-cyan-400/30 shadow-lg shadow-cyan-400/10 hover:shadow-cyan-400/20 transition-shadow duration-300">
             <Image 
-              src="/images/profile-picture.jpeg" 
+              src="/images/profile-picture.jpg" 
               alt="Mathys Cogné Foucault"
               fill
               sizes="(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem"
@@ -177,7 +177,7 @@ export function Links() {
             Mathys Cogné Foucault
           </h1>
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            {/* <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> */}
             <p className="text-slate-400 text-sm sm:text-base">Founder KoVault | 42Blockchain | 42 Paris</p>
           </div>
         </motion.div>
