@@ -34,7 +34,7 @@ export type SocialLink = {
   readonly title: string
   readonly description: string
   readonly url: string
-  readonly icon: 'linkedin' | 'github' | 'twitter' | 'phone' | 'globe' | 'calendar'
+  readonly icon: 'linkedin' | 'github' | 'twitter' | 'phone' | 'globe' | 'calendar' | 'telegram'
   readonly color: string
 }
 
@@ -309,11 +309,11 @@ export const texts = {
     subtitle: "Let's connect",
     items: [
       {
-        title: "KoVault",
-        description: "My Web3 startup - Multi-sig reimagined",
-        url: "https://kovault.xyz/",
-        icon: "globe",
-        color: "#6366F1"
+        title: "Telegram",
+        description: "Contactez-moi sur Telegram",
+        url: "https://t.me/Mathys_Cogne",
+        icon: "telegram",
+        color: "#24A1DE"
       },
       {
         title: "LinkedIn",
@@ -623,11 +623,11 @@ export const texts = {
       subtitle: "Let's connect",
       items: [
         {
-          title: "KoVault",
-          description: "Ma startup Web3 - Multi-sig repensé pour les vraies équipes",
-          url: "https://kovault.xyz/",
-          icon: "globe",
-          color: "#6366F1"
+          title: "Telegram",
+          description: "Contact me on Telegram",
+          url: "https://t.me/Mathys_Cogne",
+          icon: "telegram",
+          color: "#24A1DE"
         },
         {
           title: "LinkedIn",
